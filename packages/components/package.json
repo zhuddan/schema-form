@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "vite build",
+    "build": "rm -rf ./es && rm -rf ./lib &&   vite build",
     "builds": "vue-tsc --noEmit --skipLibCheck && vite build"
   },
   "keywords": [],
