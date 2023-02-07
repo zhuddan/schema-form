@@ -1,6 +1,6 @@
 {
   "name": "@zhudddan/schema-form",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "scripts": {},
   "dependencies": {
     "vue": "^3.2.45",
