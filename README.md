@@ -1,3 +1,5 @@
 # Vue 3 + TypeScript + Vite
 
-My project template for vue3 + ts + vite.
+git config --global --unset http.proxy
+ 
+git config --global --unset https.proxy
