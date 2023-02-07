@@ -1,8 +1,8 @@
 {
   "name": "@zhudddan/schema-form",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "scripts": {
-    "ss":"pnpm publish --access public",
+    "ss": "pnpm publish --access public",
     "publish": "pnpm version patch"
   },
   "dependencies": {
