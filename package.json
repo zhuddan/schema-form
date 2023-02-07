@@ -6,6 +6,7 @@
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },
+  "type": "module",
   "devDependencies": {
     "@types/node": "^18.11.18",
     "@types/path-browserify": "^1.0.0",
