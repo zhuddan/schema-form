@@ -2,7 +2,8 @@
   "name": "@zhudddan/schema-form",
   "version": "0.0.7",
   "scripts": {
-    "publish": "pnpm version patch && pnpm publish --access public"
+    "ss":"pnpm publish --access public",
+    "publish": "pnpm version patch"
   },
   "dependencies": {
     "vue": "^3.2.45",
