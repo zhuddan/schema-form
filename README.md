@@ -1,5 +1,3 @@
-# Vue 3 + TypeScript + Vite
+# @zhudddan/schema-form
 
-git config --global --unset http.proxy
- 
-git config --global --unset https.proxy
+just test
