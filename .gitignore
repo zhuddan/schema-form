@@ -23,3 +23,6 @@ dist-ssr
 
 .eslintcache
 types/auto-imports.d.ts
+
+**/es
+**/lib
