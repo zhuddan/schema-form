@@ -9,11 +9,10 @@
     "esModuleInterop": true,
     "moduleResolution": "Node",
     "lib": ["esnext", "dom"],
-    "rootDirs": ["./", "./packages/components"],
-    "paths": {
-      "@/*": [
-        "packages/components/src/*"
-      ]
-    }
+
+    "useDefineForClassFields": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "suppressImplicitAnyIndexErrors": true,
   }
 }
