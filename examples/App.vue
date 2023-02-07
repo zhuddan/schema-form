@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Button, useButton } from 'schema-form';
+import { Button, useButton } from '@zhudddan/schema-form';
 const s = useButton('s');
 </script>
 

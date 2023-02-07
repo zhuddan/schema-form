@@ -1,3 +1,4 @@
 import Button from './button/button.vue';
 import useButton from './button/useButton';
-export { Button, useButton };
+import { testfun } from '@zhudddan/utils';
+export { Button, useButton, testfun };

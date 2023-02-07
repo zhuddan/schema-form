@@ -77,15 +77,15 @@ importers:
 
   examples:
     specifiers:
-      schema-form: workspace:^1.0.0
+      '@zhudddan/schema-form': workspace:^0.0.1
     dependencies:
-      schema-form: link:../packages/components
+      '@zhudddan/schema-form': link:../packages/components
 
   packages/components:
     specifiers:
-      '@schema-form/utils': workspace:^1.0.0
+      '@zhudddan/utils': workspace:^1.0.0
     dependencies:
-      '@schema-form/utils': link:../utils
+      '@zhudddan/utils': link:../utils
 
   packages/utils:
     specifiers: {}
