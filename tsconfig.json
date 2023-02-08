@@ -15,5 +15,5 @@
     "isolatedModules": true,
     "suppressImplicitAnyIndexErrors": true
   },
-  "rootDirs": ["./", "./packages/components"]
+  "rootDirs": ["./packages/"]
 }
