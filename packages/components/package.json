@@ -1,6 +1,6 @@
 {
   "name": "@zhudddan/schema-form",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,6 +11,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@zhudddan/utils": "workspace:^1.0.0"
   },
   "main": "lib/index.js",
   "module": "es/index.js",

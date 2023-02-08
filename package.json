@@ -3,13 +3,13 @@
   "version": "0.0.8",
   "scripts": {
     "ss": "pnpm publish --access public",
-    "publish": "pnpm version patch"
+    "publish": "pnpm version patch",
+    "publish:kitty": "pnpm run --filter ./packages/components/kitty-ui release"
   },
   "dependencies": {
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },
-  "type": "module",
   "devDependencies": {
     "@types/node": "^18.11.18",
     "@types/path-browserify": "^1.0.0",
