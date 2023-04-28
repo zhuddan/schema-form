@@ -1,0 +1,16 @@
+{
+  "include": ["src"],
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "rootDir": "./",
+    "outDir": "./dist",
+    "declaration": true,
+    "declarationDir": "./types",
+    "noEmit": false,
+    "types": [
+      "@zdzz/shared/global",
+      "vite/client"
+    ]
+  }
+}
