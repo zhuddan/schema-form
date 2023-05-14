@@ -11,16 +11,27 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "suppressImplicitAnyIndexErrors":true,
     "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
-    "noEmit": true,
     "lib": [
       "esnext",
       "dom"
     ],
     "skipLibCheck": true,
-    "rootDir": ".",
-    "types": ["node","vite/client"]
-  }
+    "rootDir": "./",
+    "outDir": "./dist",
+    "noEmit": false,
+    "types": [
+      "node",
+      "vite/client",
+      "@zdzz/shared/global"
+    ],
+    "typeRoots":[
+      "./types"
+    ]
+  },
+  "include": [
+    "src/*",
+    "types/*"
+  ]
 }

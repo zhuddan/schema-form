@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
-import vuePlugin from '@vitejs/plugin-vue';
+import vue from '@vitejs/plugin-vue';
 import dts from 'vite-plugin-dts';
+import AutoImport from 'unplugin-auto-import/vite';
 
 export const EXTERNAL = [
   'vue',
@@ -14,6 +15,7 @@ export const EXTERNAL = [
   '@zdzz/hooks',
   /\.scss/,
   'xlsx',
+  'element-plus',
 ];
 export const GLOBALS = {
   vue: 'Vue',
@@ -25,19 +27,36 @@ export const GLOBALS = {
   '@zdzz/shared': 'zd_shared',
   '@zdzz/hooks': 'zd_hooks',
   xlsx: 'XLSX',
+  'element-plus': 'ElementPlus',
 };
 
-export default defineConfig(({ }) => {
-  // return createBuildConfig('zd_components', { vue: true });
-
+export default defineConfig(({ mode }) => {
+  const _DEV_ = mode === 'production';
   return {
     plugins: [
-      vuePlugin(),
+      vue(),
+      AutoImport({
+        include: [
+          /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+          /\.vue$/,
+          /\.vue\?vue/, // .vue
+        ],
+        imports: ['vue', 'vue-router'],
+        dts: './types/auto-imports.d.ts',
+        eslintrc: {
+          enabled: false, // Default `false`
+          filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
+          globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
+        },
+      }),
       dts({
         include: ['src/**/*.ts', 'type.d.ts', 'src/**/*.vue'],
         outputDir: ['es'],
       }),
     ],
+    define: {
+      _DEV_: `${_DEV_}`,
+    },
     build: {
       target: 'modules',
       cssCodeSplit: true,
