@@ -4,6 +4,10 @@ import type { FormSchema } from './schema';
 import type { FormProps as ElFormProps } from 'element-plus';
 import type { UnwrapRef } from 'vue';
 
+type MaybeShallowRecordRef<T extends Recordable> = {
+  [P in keyof T]: MaybeRef<T[P]>;
+};
+
 type _ElFormProps = MaybeShallowRecordRef<Omit<ElFormProps, 'model' | 'rules' >>;
 export interface _FormProps extends _ElFormProps {
   //

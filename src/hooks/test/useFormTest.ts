@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import type { CSSProperties, Ref, UnwrapRef } from 'vue';
 import type { InputEmits, InputProps, SwitchEmits, SwitchProps } from 'element-plus';
 
@@ -105,6 +105,5 @@ export const useForm3 = useForm({
   rules: rulesRefs,
   schema: schemaComptedRef,
 });
-
 export {};
 

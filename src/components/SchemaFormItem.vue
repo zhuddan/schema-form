@@ -7,6 +7,7 @@ import { isFunction, isString } from '@zdzz/shared';
 import { componentMap } from '../componentMap';
 import type { FormSchema } from '../types';
 import { useFormContext } from '../hooks/useFormContent';
+import { computed, h, toRaw, toRefs, unref, useAttrs, useSlots } from 'vue';
 
 const props = defineProps<{
   schema: FormSchema<any>;

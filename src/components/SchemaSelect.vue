@@ -1,6 +1,8 @@
 <script lang="ts" setup>
+import { computed, useAttrs } from 'vue';
 import type { SelectOption } from '../types/componentProps/components/select';
 import { ElOption, ElSelect } from 'element-plus';
+
 const props = defineProps({
   options: {
     type: Array as PropType<SelectOption[]>,

@@ -9,6 +9,3 @@ export { useForm };
 
 export * from './types';
 export default SchemaForm;
-
-const c: Nullable<Fn> = null;
-c;

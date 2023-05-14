@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import type { CSSProperties, Ref } from 'vue';
 import type { BaseFormProps, FormAction, FormProps, FormSchema, SimpleObjectFormProps } from './types';
-import zhCn from 'element-plus/dist/locale/zh-cn.mjs';
 import { ElConfigProvider, ElForm, ElRow } from 'element-plus';
 import type { FormProps as ElFormProps } from 'element-plus';
 
@@ -15,6 +14,7 @@ import SchemaFormActionButton from './components/SchemaFormActionButton.vue';
 import SchemaFormItem from './components/SchemaFormItem.vue';
 import type { FormProviderContextProps } from './hooks/useFormContent';
 import { createFormContext } from './hooks/useFormContent';
+import { computed, onMounted, reactive, ref, toRaw, unref, useAttrs, watch } from 'vue';
 
 const props = defineProps(formProps);
 const emit = defineEmits([
@@ -62,7 +62,7 @@ const { initFormModelValue } = useFormValues({
 
 const style = computed<CSSProperties>(() => {
   const gutter: number = bindValue.value.rolProps?.gutter || 0;
-  return bindValue.value?.inline ? { } : {
+  return (bindValue.value as any)?.inline ? { } : {
     paddingLeft: `${gutter}px`,
     paddingRight: `${gutter}px`,
   };
@@ -107,53 +107,51 @@ createFormContext(formContext);
 </script>
 
 <template>
-  <ElConfigProvider :locale="zhCn">
-    <ElForm
-      v-bind="{
-        ...(bindValue as ElFormProps),
-        colProps: undefined,
-        rolProps: undefined,
-        showActionBar: undefined,
-        actionBarColProps: undefined,
-        showSubmitButton: undefined,
-        showResetButton: undefined,
-        submitButtonOptions: undefined,
-        resetButtonOptions: undefined,
-        submitHandler: undefined,
-        model: undefined,
-        schemas: undefined,
-      }"
-      ref="elFormRef"
-      :model="formModel"
-      :style="style"
+  <ElForm
+    v-bind="{
+      ...(bindValue as ElFormProps),
+      colProps: undefined,
+      rolProps: undefined,
+      showActionBar: undefined,
+      actionBarColProps: undefined,
+      showSubmitButton: undefined,
+      showResetButton: undefined,
+      submitButtonOptions: undefined,
+      resetButtonOptions: undefined,
+      submitHandler: undefined,
+      model: undefined,
+      schemas: undefined,
+    }"
+    ref="elFormRef"
+    :model="formModel"
+    :style="style"
+  >
+    <component
+      :is="(bindValue as any).inline ? 'div' : ElRow"
+      v-bind="(bindValue as any).inline ? {} : bindValue.rolProps"
+      :class="{ 'display-inline-block': (bindValue as any).inline }"
     >
-      <component
-        :is="bindValue.inline ? 'div' : ElRow"
-        v-bind="bindValue.inline ? {} : bindValue.rolProps"
-        :class="{ 'display-inline-block': bindValue.inline }"
+      <SchemaFormItem
+        v-for="(schema, index) in getSchemas"
+        :key="`${String(schema.field)}_${index}`"
+        :form-model="formModel"
+        :schema="schema"
       >
-        <SchemaFormItem
-          v-for="(schema, index) in getSchemas"
-          :key="`${String(schema.field)}_${index}`"
-          :form-model="formModel"
-          :schema="schema"
+        <template v-for="item in Object.keys($slots)" #[item]="data">
+          <slot :name="item" v-bind="data || {}"></slot>
+        </template>
+      </SchemaFormItem>
+      <SchemaFormActionButton v-if="bindValue.showActionBar">
+        <template
+          v-for="item in ['action']"
+          #[item]="data"
         >
-          <template v-for="item in Object.keys($slots)" #[item]="data">
-            <slot :name="item" v-bind="data || {}"></slot>
-          </template>
-        </SchemaFormItem>
-        <SchemaFormActionButton v-if="bindValue.showActionBar">
-          <template
-            v-for="item in ['action']"
-            #[item]="data"
-          >
-            <slot :name="item" v-bind="data || {}"></slot>
-          </template>
-          <slot></slot>
-        </SchemaFormActionButton>
-      </component>
-    </ElForm>
-  </ElConfigProvider>
+          <slot :name="item" v-bind="data || {}"></slot>
+        </template>
+        <slot></slot>
+      </SchemaFormActionButton>
+    </component>
+  </ElForm>
 </template>
 
 <style>

@@ -1,6 +1,6 @@
 import { merge } from 'lodash-es';
 import type { ComputedRef, Ref } from 'vue';
-import { nextTick, unref } from 'vue';
+import { nextTick, toRaw, unref } from 'vue';
 
 import type { FormAction, FormProps } from '../types';
 export function getRecordRefRawValue<T extends Recordable>(maybeShallowRecordRef: MaybeShallowRecordRef<T>): T {
@@ -45,7 +45,6 @@ export function useFormEvents<T extends Recordable>(
   async function scrollToField(prop2: any) {
     return await unref(elFormRef).scrollToField(prop2);
   }
-
   function setProps(newFormProps: Partial<MaybeShallowRecordRef<FormProps<T>>>) {
     const _escapeProps = merge({ ...unref(escapeProps) }, { ...unref(newFormProps) }) as FormProps<T>;
     escapeProps.value = _escapeProps;
