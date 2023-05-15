@@ -1,6 +1,6 @@
 {
   "name": "@zdzz/schema-form",
-  "version": "0.0.26",
+  "version": "0.0.1",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -8,15 +8,13 @@
   "unpkg": "dist/index.es.js",
   "files": [
     "dist",
-    "lib",
     "es",
+    "lib",
     "package.json",
-    "README.md",
-    "global.d.ts"
+    "README.md"
   ],
   "scripts": {
     "build": "pnpm run clear && vite build",
-    "build:scss": "esno script/buildScss",
     "version:patch": "pnpm version patch",
     "clear": "rm -rf dist es lib",
     "w": "vite build -w",
@@ -30,9 +28,6 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.es.js",
       "require": "./dist/index.cjs"
-    },
-    "./global": {
-      "types": "./global.d.ts"
     },
     "./dist/*": "./dist/*",
     "./es/*": "./es/*",
