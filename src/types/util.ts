@@ -6,7 +6,7 @@ export interface CommonProps {
   style: StyleType;
 }
 
-export type WithOption<OptionsProps extends Recordable = Recordable> = Partial<OptionsProps> & CommonOptions;
+export type WithOption<OptionsProps extends AnyObject = AnyObject> = Partial<OptionsProps> & CommonOptions;
 
 type RecordFn = Record<string, Fn>;
 
@@ -14,13 +14,13 @@ export type CreateEmitType<T extends RecordFn> = {
   [K in keyof T as `on${Capitalize<string & K>}`]?: T[K] | ((...args: Parameters<T[K]>) => void);
 };
 
-export type CreateComponentProps<CP extends Recordable, EV extends RecordFn > = Partial<CP & CreateEmitType<EV> & CommonProps>;
+export type CreateComponentProps<CP extends AnyObject, EV extends RecordFn > = Partial<CP & CreateEmitType<EV> & CommonProps>;
 
 export interface AssembleComponent<
   CompName extends ComponentType,
-  CompProps extends Recordable,
+  CompProps extends AnyObject,
   CompEvent extends RecordFn,
-  FormModel extends Recordable = Recordable,
+  FormModel extends AnyObject = AnyObject,
 > {
   component: CompName;
   componentProps?: CreateComponentProps<CompProps, CompEvent>

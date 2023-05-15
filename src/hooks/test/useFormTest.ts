@@ -13,7 +13,7 @@ interface CommonProps {
   style: CSSProperties;
 }
 
-interface FormAction<T extends Recordable = Recordable> {
+interface FormAction<T extends AnyObject = AnyObject> {
   // 设置表单属性
   setProps: (props: Partial<FormProps<T>>) => void;
   // 对整个表单作验证
@@ -29,12 +29,12 @@ interface FormAction<T extends Recordable = Recordable> {
   // 提交
   submit: () => Promise<void>;
 }
-type CreateComponentProps<CP extends Recordable, EV extends RecordFn > = Partial<CP & CreateEmitType<EV> & CommonProps>;
+type CreateComponentProps<CP extends AnyObject, EV extends RecordFn > = Partial<CP & CreateEmitType<EV> & CommonProps>;
 interface AssembleComponent<
   CompName extends ComponentType,
-  CompProps extends Recordable,
+  CompProps extends AnyObject,
   CompEvent extends RecordFn,
-  FormModel extends Recordable = Recordable,
+  FormModel extends AnyObject = AnyObject,
 > {
   component: CompName;
   componentProps?: CreateComponentProps<CompProps, CompEvent>
@@ -42,30 +42,30 @@ interface AssembleComponent<
   ;
 }
 type BaseFormSchema <T = any> = {
-  field: T extends Recordable ? (keyof T | 'divider') : string ;
+  field: T extends AnyObject ? (keyof T | 'divider') : string ;
 } & { label?: string };
 
-type FormSchemaWithComponentProps<C, T extends Recordable = Recordable > = C & BaseFormSchema<T>;
+type FormSchemaWithComponentProps<C, T extends AnyObject = AnyObject > = C & BaseFormSchema<T>;
 
-type Input<T extends Recordable> = AssembleComponent<'Input', InputProps, InputEmits, T>;
-type FormSchemaInput<T extends Recordable = Recordable > = FormSchemaWithComponentProps<Input<T>, T>;
+type Input<T extends AnyObject> = AssembleComponent<'Input', InputProps, InputEmits, T>;
+type FormSchemaInput<T extends AnyObject = AnyObject > = FormSchemaWithComponentProps<Input<T>, T>;
 
-type Switch<T extends Recordable> = AssembleComponent<'Switch', SwitchProps, SwitchEmits, T>;
-type FormSchemaSwitch<T extends Recordable = Recordable > = FormSchemaWithComponentProps<Switch<T>, T>;
+type Switch<T extends AnyObject> = AssembleComponent<'Switch', SwitchProps, SwitchEmits, T>;
+type FormSchemaSwitch<T extends AnyObject = AnyObject > = FormSchemaWithComponentProps<Switch<T>, T>;
 
-type FormSchema<T extends Recordable = Recordable> = FormSchemaInput<T> | FormSchemaSwitch<T>;
+type FormSchema<T extends AnyObject = AnyObject> = FormSchemaInput<T> | FormSchemaSwitch<T>;
 /************************************************************/
-type Recordable<T = any> = Record<string, T>;
+type AnyObject<T = any> = Record<string, T>;
 interface _FormItemRule {
   required?: boolean;
 }
 type Arrayable<T> = T | T[];
-type FormRules<T = Recordable> = Partial<Record<keyof T, Arrayable<_FormItemRule>>>;
+type FormRules<T = AnyObject> = Partial<Record<keyof T, Arrayable<_FormItemRule>>>;
 // type MaybeRef<T> = T | Ref<T> ;
 // type MaybeRef<T> = Ref<UnwrapRef<T>> | T;
 type MaybeRef<T> = Ref<UnwrapRef<T>> | T ;
 
-interface FormProps<T extends Recordable> {
+interface FormProps<T extends AnyObject> {
   model: T;
   rules: MaybeRef<FormRules<UnwrapRef<T>>>;
   schema?: MaybeRef<FormSchema<UnwrapRef<T>>[]>;
@@ -76,9 +76,9 @@ interface User {
   age: number;
 }
 
-function useForm<T extends Recordable>(option: FormProps<T>): FormProps<T>;
-function useForm<T extends Ref<Recordable>>(option: FormProps<T>): FormProps<Ref<UnwrapRef<T>>>;
-function useForm<T extends MaybeRef<Recordable>>(option: FormProps<T>): FormProps<T> {
+function useForm<T extends AnyObject>(option: FormProps<T>): FormProps<T>;
+function useForm<T extends Ref<AnyObject>>(option: FormProps<T>): FormProps<Ref<UnwrapRef<T>>>;
+function useForm<T extends MaybeRef<AnyObject>>(option: FormProps<T>): FormProps<T> {
   return option;
 }
 

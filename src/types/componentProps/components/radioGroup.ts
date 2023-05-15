@@ -10,4 +10,4 @@ export interface _RadioGroupProps extends RadioGroupProps {
   options: WithOption<RadioProps>[];
 }
 
-export type RadioGroup<T extends Recordable> = AssembleComponent<'RadioGroup', _RadioGroupProps, RadioEmits, T>;
+export type RadioGroup<T extends AnyObject> = AssembleComponent<'RadioGroup', _RadioGroupProps, RadioEmits, T>;

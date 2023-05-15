@@ -2,8 +2,8 @@ import { merge } from 'lodash-es';
 import type { ComputedRef, Ref } from 'vue';
 import { nextTick, toRaw, unref } from 'vue';
 
-import type { FormAction, FormProps } from '../types';
-export function getRecordRefRawValue<T extends Recordable>(maybeShallowRecordRef: MaybeShallowRecordRef<T>): T {
+import type { FormAction, SchemaFormProps } from '../types';
+export function getRecordRefRawValue<T extends AnyObject>(maybeShallowRecordRef: MaybeShallowRecordRef<T>): T {
   const res = {} as T;
   const keys = Object.keys(maybeShallowRecordRef);
   for (let index = 0; index < keys.length; index++) {
@@ -15,15 +15,15 @@ export function getRecordRefRawValue<T extends Recordable>(maybeShallowRecordRef
 export interface UseFormActionContext {
   emit: EmitType;
   elFormRef: Ref<FormAction>;
-  bindValue: ComputedRef<FormProps<any>>;
-  escapeProps: Ref<Partial<FormProps<any>>>;
+  bindValue: ComputedRef<SchemaFormProps<any>>;
+  escapeProps: Ref<Partial<SchemaFormProps<any>>>;
 }
 
-export function useFormEvents<T extends Recordable>(
+export function useFormEvents<T extends AnyObject>(
   emit: EmitType,
   elFormRef: Ref<FormAction>,
-  bindValue: ComputedRef<FormProps<any>>,
-  escapeProps: Ref<Partial<FormProps<any>>>,
+  bindValue: ComputedRef<SchemaFormProps<any>>,
+  escapeProps: Ref<Partial<SchemaFormProps<any>>>,
 ):
   FormAction<T> {
   async function clearValidate(name?: string | string[]) {
@@ -45,8 +45,8 @@ export function useFormEvents<T extends Recordable>(
   async function scrollToField(prop2: any) {
     return await unref(elFormRef).scrollToField(prop2);
   }
-  function setProps(newFormProps: Partial<MaybeShallowRecordRef<FormProps<T>>>) {
-    const _escapeProps = merge({ ...unref(escapeProps) }, { ...unref(newFormProps) }) as FormProps<T>;
+  function setProps(newFormProps: Partial<MaybeShallowRecordRef<SchemaFormProps<T>>>) {
+    const _escapeProps = merge({ ...unref(escapeProps) }, { ...unref(newFormProps) }) as SchemaFormProps<T>;
     escapeProps.value = _escapeProps;
   }
 

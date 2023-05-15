@@ -4,7 +4,7 @@ export type CheckboxGroupComponentType = 'Checkbox' | 'CheckboxButton';
 
 export type CheckboxGroupOption = WithOption<CheckboxProps>;
 
-export type CheckboxGroup<T extends Recordable> = AssembleComponent<'CheckboxGroup', CheckboxGroupProps & {
+export type CheckboxGroup<T extends AnyObject> = AssembleComponent<'CheckboxGroup', CheckboxGroupProps & {
   options?: CheckboxGroupOption[];
 }, CheckboxGroupEmits, T>;
 

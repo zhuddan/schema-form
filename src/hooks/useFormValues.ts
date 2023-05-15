@@ -1,4 +1,4 @@
-import type { FormProps, FormSchema } from '../types';
+import type { FormSchema, SchemaFormProps } from '../types';
 import type { ComputedRef, Ref } from 'vue';
 import { toRaw, unref } from 'vue';
 
@@ -8,10 +8,10 @@ export function useFormValues({
   schemas,
   escapeProps,
 }: {
-  formModel: Recordable;
-  bindValue: ComputedRef<Recordable<any>>;
+  formModel: AnyObject;
+  bindValue: ComputedRef<AnyObject>;
   schemas: ComputedRef<FormSchema<any>[]>;
-  escapeProps?: Ref<Partial<FormProps<any>>>;
+  escapeProps?: Ref<Partial<SchemaFormProps<any>>>;
 }) {
   schemas;
   escapeProps;

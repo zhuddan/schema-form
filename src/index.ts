@@ -1,11 +1,5 @@
-import { withInstall } from '@zdzz/shared';
-import schemaFormItem from './components/SchemaFormItem.vue';
-import useForm from './hooks/useForm';
-import schemaForm from './SchemaForm.vue';
-export const SchemaForm = withInstall(schemaForm);
-export const SchemaFormItem = withInstall(schemaFormItem);
-
-export { useForm };
-
+export { default as SchemaFormItem } from './components/SchemaFormItem.vue';
+export { default as useForm } from './hooks/useForm';
+export { default as SchemaForm } from './SchemaForm.vue';
 export * from './types';
-export default SchemaForm;
+

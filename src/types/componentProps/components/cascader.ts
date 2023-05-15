@@ -4,5 +4,5 @@ import type { ExtractPropTypes } from 'vue';
 import type { AssembleComponent } from '../../util';
 
 export type CascaderProps = ExtractPropTypes<typeof cascaderProps>;
-export type Cascader<T extends Recordable> = AssembleComponent<'Cascader', CascaderProps, CascaderEmits, T>;
+export type Cascader<T extends AnyObject> = AssembleComponent<'Cascader', CascaderProps, CascaderEmits, T>;
 

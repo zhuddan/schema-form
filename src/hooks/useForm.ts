@@ -1,10 +1,11 @@
-import type { FormAction, FormProps } from '../types';
+import type { FormAction, SchemaFormProps } from '../types';
 import type { Ref, UnwrapRef } from 'vue';
 import { nextTick, onUnmounted, ref, toRaw, unref, watch } from 'vue';
 
-type UseFormReturn<T extends MaybeRef<Recordable> = MaybeRef<Recordable>> = [(instance: FormAction<UnwrapRef<T>>) => void, FormAction<T>];
+type UseFormReturn<T extends MaybeRef<AnyObject> = MaybeRef<AnyObject>> =
+[(instance: FormAction<UnwrapRef<T>>) => void, FormAction<T>];
 
-export function getRecordRefRawValue<T extends Recordable>(maybeShallowRecordRef: MaybeRecordRef<T>): T {
+export function getRecordRefRawValue<T extends AnyObject>(maybeShallowRecordRef: MaybeRecordRef<T>): T {
   const res = {} as T;
   const keys = Object.keys(maybeShallowRecordRef);
   for (let index = 0; index < keys.length; index++) {
@@ -14,9 +15,9 @@ export function getRecordRefRawValue<T extends Recordable>(maybeShallowRecordRef
   return res;
 }
 
-export default function useForm<T extends Recordable>(props?: FormProps<T>): UseFormReturn<T> ;
-export default function useForm<T extends Ref<Recordable>>(props?: FormProps<T>): UseFormReturn<Ref<UnwrapRef<T>>> ;
-export default function useForm<T extends MaybeRef<Recordable>>(props?: FormProps<T>): UseFormReturn<T> {
+export default function useForm<T extends AnyObject>(props?: SchemaFormProps<T>): UseFormReturn<T> ;
+export default function useForm<T extends Ref<AnyObject>>(props?: SchemaFormProps<T>): UseFormReturn<Ref<UnwrapRef<T>>> ;
+export default function useForm<T extends MaybeRef<AnyObject>>(props?: SchemaFormProps<T>): UseFormReturn<T> {
   const formAction = ref<Nullable<FormAction<T>>>(null);
   const loadedRef = ref<Nullable<boolean>>(false);
   const isProdMode = !_DEV_;
@@ -54,7 +55,7 @@ export default function useForm<T extends MaybeRef<Recordable>>(props?: FormProp
       () => props,
       () => {
         if (props) {
-          const _props = getRecordRefRawValue(props as any) as unknown as FormProps<T>;
+          const _props = getRecordRefRawValue(props as any) as unknown as SchemaFormProps<T>;
           instance.setProps({
             ..._props,
             // 如果 解构为普通对象会导致 响应性失效
@@ -67,7 +68,7 @@ export default function useForm<T extends MaybeRef<Recordable>>(props?: FormProp
   }
 
   const methods: FormAction<T> = {
-    async setProps(props: Partial<FormProps<T>>) {
+    async setProps(props: Partial<SchemaFormProps<T>>) {
       const form = await getForm();
       form.setProps(props);
     },

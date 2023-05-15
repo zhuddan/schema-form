@@ -22,8 +22,18 @@ export default defineConfig(({ mode }) => {
     plugins: [
       vue(),
       dts({
-        include: ['src/**/*.ts', 'type.d.ts', 'src/**/*.vue'],
-        outputDir: ['es'],
+        include: ['./src/**/*.vue', './types/*.d.ts', './src/**/*.ts'],
+        outputDir: ['dist', 'lib', 'es'],
+        beforeWriteFile(filePath: string, content) {
+          const filePathOut = filePath
+            .replace(/dist\/src\//, 'dist/')
+            .replace(/es\/src\//, 'es/')
+            .replace(/lib\/src\//, 'lib/');
+          return {
+            filePath: filePathOut,
+            content,
+          };
+        },
       }),
     ],
     define: {

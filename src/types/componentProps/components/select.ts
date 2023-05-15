@@ -10,7 +10,7 @@ interface SelectProps extends _SelectProps {
   options: WithOption<{}>[];
 }
 
-export type Select<T extends Recordable> = AssembleComponent<'Select', SelectProps, {
+export type Select<T extends AnyObject> = AssembleComponent<'Select', SelectProps, {
   onChange: Fn;
   onVisibleChange: Fn;
   onRemoveTag: Fn;

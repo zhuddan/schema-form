@@ -2,11 +2,11 @@
 import { useVModel } from '@vueuse/core';
 import { ElCol, ElDivider, ElFormItem } from 'element-plus';
 
-import { isFunction, isString } from '@zdzz/shared';
+import { isFunction } from '../utils';
 
 import { componentMap } from '../componentMap';
 import type { FormSchema } from '../types';
-import { useFormContext } from '../hooks/useFormContent';
+import { useSchemaFormContext } from '../hooks/useFormContent';
 import { computed, h, toRaw, toRefs, unref, useAttrs, useSlots } from 'vue';
 
 const props = defineProps<{
@@ -16,7 +16,7 @@ const props = defineProps<{
 
 const emits = defineEmits(['update:formModel']);
 
-const formContext = useFormContext();
+const formContext = useSchemaFormContext();
 
 const slots = useSlots();
 const model = useVModel(props, 'formModel', emits);
@@ -44,7 +44,7 @@ const slotComp = computed(() => {
 const isDivider = computed(() => unref(props.schema.component) == 'Divider');
 
 const getBindValue = computed(() => {
-  const value: Recordable = {
+  const value: AnyObject = {
     ...attrs,
     ...props.schema,
     // label: label.value,

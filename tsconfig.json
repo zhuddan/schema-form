@@ -23,8 +23,7 @@
     "noEmit": false,
     "types": [
       "node",
-      "vite/client",
-      "@zdzz/shared/global"
+      "vite/client"
     ],
     "typeRoots":[
       "./types"

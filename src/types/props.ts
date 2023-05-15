@@ -1,14 +1,14 @@
 import type { FormActionButton } from './action';
 import type { ColEx, RolEx } from './layout';
 import type { FormSchema } from './schema';
-import type { FormProps as ElFormProps } from 'element-plus';
+import type { FormProps } from 'element-plus';
 import type { UnwrapRef } from 'vue';
 
-type MaybeShallowRecordRef<T extends Recordable> = {
+type MaybeShallowRecordRef<T extends AnyObject> = {
   [P in keyof T]: MaybeRef<T[P]>;
 };
 
-type _ElFormProps = MaybeShallowRecordRef<Omit<ElFormProps, 'model' | 'rules' >>;
+type _ElFormProps = MaybeShallowRecordRef<Omit<FormProps, 'model' | 'rules' >>;
 export interface _FormProps extends _ElFormProps {
   //
   colProps?: Partial<ColEx>;
@@ -30,7 +30,7 @@ export interface _FormProps extends _ElFormProps {
   // 提交函数
   submitHandler: () => Awaitable<void>;
 }
-// export type FormProps<T extends MaybeRef<Recordable>> = Partial<_FormProps> & {
+// export type FormProps<T extends MaybeRef<AnyObject>> = Partial<_FormProps> & {
 //   // 表单数据对象
 //   model?: T;
 //   // 表单验证规则
@@ -39,7 +39,7 @@ export interface _FormProps extends _ElFormProps {
 //   schemas?: MaybeRef<FormSchema<UnwrapRef<T>>[]>;
 // };
 
-export type SimpleObjectFormProps<T extends Recordable> = Partial<_FormProps> & {
+export type SimpleObjectFormProps<T extends AnyObject> = Partial<_FormProps> & {
   // 表单数据对象
   model?: T;
   // 表单验证规则
@@ -48,7 +48,7 @@ export type SimpleObjectFormProps<T extends Recordable> = Partial<_FormProps> & 
   schemas?: T;
 };
 
-export type BaseFormProps<T extends Recordable=Recordable> = Partial<_FormProps> & {
+export type BaseFormProps<T extends AnyObject=AnyObject> = Partial<_FormProps> & {
   // 表单数据对象
   model?: T;
   // 表单验证规则
@@ -57,4 +57,4 @@ export type BaseFormProps<T extends Recordable=Recordable> = Partial<_FormProps>
   schemas?: FormSchema<UnwrapRef<T>>[];
 };
 
-export type FormProps<T extends MaybeRef<Recordable>> = Partial<MaybeShallowRecordRef<BaseFormProps<T>>>;
+export type SchemaFormProps<T extends MaybeRef<AnyObject> = MaybeRef<AnyObject>> = Partial<MaybeShallowRecordRef<BaseFormProps<T>>>;

@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import type { CSSProperties, Ref } from 'vue';
-import type { BaseFormProps, FormAction, FormProps, FormSchema, SimpleObjectFormProps } from './types';
-import { ElConfigProvider, ElForm, ElRow } from 'element-plus';
+import type { FormAction, FormSchema, SimpleObjectFormProps } from './types';
+import { ElForm, ElRow } from 'element-plus';
+
 import type { FormProps as ElFormProps } from 'element-plus';
 
-import type { UseFormActionContext } from './hooks/useFormEvents';
 import { useFormEvents } from './hooks/useFormEvents';
 import { useFormValues } from './hooks/useFormValues';
 
@@ -13,7 +13,7 @@ import { formProps } from './schemaFormProps';
 import SchemaFormActionButton from './components/SchemaFormActionButton.vue';
 import SchemaFormItem from './components/SchemaFormItem.vue';
 import type { FormProviderContextProps } from './hooks/useFormContent';
-import { createFormContext } from './hooks/useFormContent';
+import { createSchemaFormContext } from './hooks/useFormContent';
 import { computed, onMounted, reactive, ref, toRaw, unref, useAttrs, watch } from 'vue';
 
 const props = defineProps(formProps);
@@ -27,7 +27,7 @@ const emit = defineEmits([
 ]);
 
 const attrs = useAttrs();
-const formModel = reactive<Recordable>({});
+const formModel = reactive<AnyObject>({});
 // el-form 的 ref
 const elFormRef = ref<Nullable<FormAction>>();
 // 通过useForm 设置的Props
@@ -102,8 +102,7 @@ watch(
       initFormModelValue();
   },
 );
-createFormContext(formContext);
-// formAction.setProps(props);
+createSchemaFormContext(formContext);
 </script>
 
 <template>

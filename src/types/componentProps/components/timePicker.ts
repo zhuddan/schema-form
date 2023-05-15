@@ -4,7 +4,7 @@ export interface TimePickerProps extends TimePickerDefaultProps {
   isRange: boolean;
 }
 
-export type TimePicker<T extends Recordable> = AssembleComponent<'TimePicker', TimePickerProps, {
+export type TimePicker<T extends AnyObject> = AssembleComponent<'TimePicker', TimePickerProps, {
   change(v: boolean): void;
   blur(v: boolean): void;
   focus(v: boolean): void;

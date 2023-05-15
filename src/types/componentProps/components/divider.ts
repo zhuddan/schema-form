@@ -1,4 +1,4 @@
 import type { DividerProps } from 'element-plus';
 import type { AssembleComponent } from '../../util';
 
-export type Divider<T extends Recordable> = AssembleComponent<'Divider', DividerProps, {}, T>;
+export type Divider<T extends AnyObject> = AssembleComponent<'Divider', DividerProps, {}, T>;

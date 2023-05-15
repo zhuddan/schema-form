@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { ElButton, ElCol, ElFormItem } from 'element-plus';
-import { useFormContext } from '../hooks/useFormContent';
+import { useSchemaFormContext } from '../hooks/useFormContent';
 import type { FormActionButton } from '../types';
 import { computed, unref } from 'vue';
 
-const formContext = useFormContext();
+const formContext = useSchemaFormContext();
 
 const colBindValue = computed(() => formContext.value?.actionBarColProps ?? formContext.value?.colProps);
 // function getBtnBindValue(btn: MaybeShallowRecordRef<FormActionButton>) {

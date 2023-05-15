@@ -1,11 +1,11 @@
-import type { FormProps } from './props';
+import type { SchemaFormProps } from './props';
 import type { ButtonEmits, ButtonProps } from 'element-plus';
 import type { CreateEmitType } from './util';
 import type { ColEx } from './layout';
 import type { UnwrapRef } from 'vue';
-export interface FormAction<T extends Recordable = Recordable> {
+export interface FormAction<T extends AnyObject = AnyObject> {
   // 设置表单属性
-  setProps: (props: Partial<FormProps<T>>) => void;
+  setProps: (props: Partial<SchemaFormProps<T>>) => void;
   // 对整个表单进行重置，将所有字段值重置为初始值并移除校验结果
   resetFields: () => void;
   // 对整个表单作验证
