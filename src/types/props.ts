@@ -2,15 +2,14 @@ import type { FormActionButton } from './action';
 import type { AnyObject, Awaitable, FormRules, MaybeRef } from './global';
 import type { ColEx, RolEx } from './layout';
 import type { FormSchema } from './schema';
-import type { FormProps } from 'element-plus/es/components/form/src/form';
-// import type { FormProps } from 'element-plus';
+import type { FormProps as ElFormProps } from 'element-plus';
 import type { UnwrapRef } from 'vue';
 
 type MaybeShallowRecordRef<T extends AnyObject> = {
   [P in keyof T]: MaybeRef<T[P]>;
 };
 
-type _ElFormProps = MaybeShallowRecordRef<Omit<FormProps, 'model' | 'rules' >>;
+type _ElFormProps = MaybeShallowRecordRef<Omit<ElFormProps, 'model' | 'rules' >>;
 export interface _FormProps extends _ElFormProps {
   //
   colProps?: Partial<ColEx>;
@@ -32,14 +31,6 @@ export interface _FormProps extends _ElFormProps {
   // 提交函数
   submitHandler: () => Awaitable<void>;
 }
-// export type FormProps<T extends MaybeRef<AnyObject>> = Partial<_FormProps> & {
-//   // 表单数据对象
-//   model?: T;
-//   // 表单验证规则
-//   rules?: MaybeRef<FormRules<UnwrapRef<T>>>;
-//   // 字段 schemas
-//   schemas?: MaybeRef<FormSchema<UnwrapRef<T>>[]>;
-// };
 
 export interface SimpleObjectFormProps<T extends AnyObject = AnyObject> extends Partial<_FormProps> {
   // 表单数据对象

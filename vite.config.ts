@@ -4,12 +4,12 @@ import dts from 'vite-plugin-dts';
 
 export const EXTERNAL = [
   'vue',
-  'element-plus',
+  // 'element-plus',
   /\.scss/,
 ];
 export const GLOBALS = {
   vue: 'Vue',
-  'element-plus': 'ElementPlus',
+  // 'element-plus': 'ElementPlus',
 };
 
 export default defineConfig(({ mode }) => {

@@ -24,7 +24,10 @@
     "types": [
       "node",
       "vite/client"
-    ]
+    ],
+    "paths": {
+      "element-plus":["node_modules/element-plus"]
+    }
   },
   "include": [
     "src/**/*.ts",

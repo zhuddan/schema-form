@@ -18,7 +18,7 @@ export function useFormValues({
   escapeProps;
   function initFormModelValue() {
     const _bindValue = unref(bindValue);
-    const model = toRaw(_bindValue.model);
+    const model = toRaw(_bindValue.model || {});
     if (Object.keys(model).length) {
       for (const key in model) {
         if (Object.prototype.hasOwnProperty.call(model, key)) {

@@ -12,11 +12,7 @@ export function getRecordRefRawValue<T extends AnyObject>(maybeShallowRecordRef:
   }
   return res;
 }
-// function useForm<T extends AnyObject>(option: FormProps<T>): FormProps<T>;
-// function useForm<T extends Ref<AnyObject>>(option: FormProps<T>): FormProps<Ref<UnwrapRef<T>>>;
-// function useForm<T extends MaybeRef<AnyObject>>(option: FormProps<T>): FormProps<T> {
-//   return option;
-// }
+
 type UseFormReturn<T extends AnyObject = AnyObject> = [(instance: FormAction<T>) => void, FormAction<T>];
 
 export function useForm<T extends AnyObject>(props?: SchemaFormProps<T>): UseFormReturn<T> ;

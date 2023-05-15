@@ -7,11 +7,8 @@ const model = ref({
   age: 10,
 });
 
-const c: _FormProps = {
-  submitButtonOptions: [],
-};
-
 const [register] = useForm({
+  model,
   schemas: [
     {
       component: 'Input',
