@@ -27,8 +27,8 @@ const buttons = computed(() => {
   ];
 });
 
-async function handleClick(e: Partial<FormActionButton>) {
-  const onClickHandle = unref(e.onClick);
+async function handleClick(e?: Partial<FormActionButton>) {
+  const onClickHandle = unref(e?.onClick);
   if (onClickHandle) {
     onClickHandle({
       ...e,
@@ -36,9 +36,9 @@ async function handleClick(e: Partial<FormActionButton>) {
     });
     return;
   }
-  if (e.actionType == 'submit')
+  if (e?.actionType == 'submit')
     formContext.value?.action.submit();
-  if (e.actionType == 'reset')
+  if (e?.actionType == 'reset')
     formContext.value?.action.resetFields();
 }
 </script>
@@ -56,7 +56,7 @@ async function handleClick(e: Partial<FormActionButton>) {
         v-bind="{ ...btn, onClick: undefined }"
         @click="handleClick(btn)"
       >
-        {{ btn.label }}
+        {{ btn?.label }}
       </ElButton>
       <slot name="action"></slot>
     </ElFormItem>

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ElCheckbox, ElCheckboxButton, ElCheckboxGroup } from 'element-plus';
 import type { CheckboxGroupComponentType, CheckboxGroupOption } from '../types/componentProps/components/checkbox';
+import type { PropType } from 'vue';
 import { computed, useAttrs } from 'vue';
 
 const props = defineProps({

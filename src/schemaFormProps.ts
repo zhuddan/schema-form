@@ -1,8 +1,9 @@
-import type { BaseFormProps } from './types';
+import type { SchemaFormProps } from './types';
 import { ElIcon } from 'element-plus';
 import { Check, RefreshLeft } from '@element-plus/icons-vue';
+import type { PropType } from 'vue';
 import { h } from 'vue';
-type BP = Required<BaseFormProps>;
+type BP = Required<SchemaFormProps>;
 export const formProps = {
   /** ***************************************************************** */
   /** ***************************************************************** */

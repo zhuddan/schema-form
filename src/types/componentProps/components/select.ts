@@ -1,3 +1,4 @@
+import type { AnyObject, Fn } from 'src/types/global';
 import type { AssembleComponent, WithOption } from '../../util';
 import type { ElOption, ElSelect } from 'element-plus';
 

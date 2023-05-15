@@ -8,10 +8,11 @@ import { componentMap } from '../componentMap';
 import type { FormSchema } from '../types';
 import { useSchemaFormContext } from '../hooks/useFormContent';
 import { computed, h, toRaw, toRefs, unref, useAttrs, useSlots } from 'vue';
+import type { AnyObject } from '../types/global';
 
 const props = defineProps<{
   schema: FormSchema<any>;
-  formModel: Object;
+  formModel: AnyObject;
 }>();
 
 const emits = defineEmits(['update:formModel']);
@@ -32,7 +33,7 @@ const getValues = computed(() => {
 
 const slotKey = computed(() => unref(props.schema?.slot));
 
-const fieldKey = computed(() => unref(props.schema.field));
+const fieldKey = computed(() => unref(props.schema.field) as string);
 // 刷新
 const slotComp = computed(() => {
   const key = unref(slotKey);

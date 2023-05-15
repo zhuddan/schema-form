@@ -1,5 +1,6 @@
 import type { FormAction } from './action';
 import type { CommonOptions, ComponentType, StyleType } from './common';
+import type { AnyObject, Fn } from './global';
 
 export interface CommonProps {
   disabled: boolean;

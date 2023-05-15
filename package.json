@@ -1,13 +1,12 @@
 {
   "name": "@zdzz/schema-form",
-  "version": "0.0.1",
+  "version": "0.0.11",
   "license": "ISC",
-  "private": false,
   "author": "zhuddan",
   "description": "",
-  "main": "lib/index.js",
-  "module": "es/index.js",
-  "typings": "lib/index.d.ts",
+  "main": "./lib/index.js",
+  "module": "./es/index.js",
+  "typings": "./lib/index.d.ts",
   "unpkg": "dist/index.es.js",
   "files": [
     "dist",
@@ -18,17 +17,19 @@
   ],
   "scripts": {
     "build": "pnpm run clear && vite build",
+    "build:type": "esno ./scripts/type.ts",
     "version:patch": "pnpm version patch",
     "clear": "rm -rf dist es lib",
     "w": "vite build -w",
-    "check:type": "vue-tsc --noEmit"
+    "check:type": "vue-tsc --noEmit",
+    "p": "npm publish --no-git-checks"
   },
   "keywords": [],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.es.js",
-      "require": "./dist/index.cjs"
+      "require": "./dist/index.cjs.js"
     },
     "./dist/*": "./dist/*",
     "./es/*": "./es/*",
@@ -41,7 +42,7 @@
     "@types/qs": "^6.9.7",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
     "@typescript-eslint/parser": "^5.54.0",
-    "@vitejs/plugin-vue": "^4.0.0",
+    "@vitejs/plugin-vue": "^4.2.3",
     "consola": "^2.15.3",
     "cpy": "^9.0.1",
     "eslint": "^8.35.0",

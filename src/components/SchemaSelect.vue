@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import type { PropType } from 'vue';
 import { computed, useAttrs } from 'vue';
 import type { SelectOption } from '../types/componentProps/components/select';
 import { ElOption, ElSelect } from 'element-plus';

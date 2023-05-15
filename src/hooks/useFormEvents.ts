@@ -3,6 +3,7 @@ import type { ComputedRef, Ref } from 'vue';
 import { nextTick, toRaw, unref } from 'vue';
 
 import type { FormAction, SchemaFormProps } from '../types';
+import type { AnyObject, EmitType, MaybeShallowRecordRef } from 'src/types/global';
 export function getRecordRefRawValue<T extends AnyObject>(maybeShallowRecordRef: MaybeShallowRecordRef<T>): T {
   const res = {} as T;
   const keys = Object.keys(maybeShallowRecordRef);
@@ -47,13 +48,13 @@ export function useFormEvents<T extends AnyObject>(
   }
   function setProps(newFormProps: Partial<MaybeShallowRecordRef<SchemaFormProps<T>>>) {
     const _escapeProps = merge({ ...unref(escapeProps) }, { ...unref(newFormProps) }) as SchemaFormProps<T>;
-    escapeProps.value = _escapeProps;
+    escapeProps.value = _escapeProps as typeof escapeProps.value;
   }
 
   async function submit() {
     const _getBindValue = toRaw(unref(bindValue));
-    if (_getBindValue.submitHandler) {
-      unref(_getBindValue.submitHandler)();
+    if (_getBindValue?.submitHandler) {
+      unref(_getBindValue?.submitHandler)?.();
       return;
     }
     const isValid = await validate();

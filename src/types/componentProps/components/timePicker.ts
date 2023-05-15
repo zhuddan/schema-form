@@ -1,5 +1,7 @@
 import type { AssembleComponent } from '../../util';
 import type { TimePickerDefaultProps } from 'element-plus';
+import type { AnyObject } from 'src/types/global';
+
 export interface TimePickerProps extends TimePickerDefaultProps {
   isRange: boolean;
 }

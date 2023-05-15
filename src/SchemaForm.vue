@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { CSSProperties, Ref } from 'vue';
-import type { FormAction, FormSchema, SimpleObjectFormProps } from './types';
+import type { AnyObject, EmitType, FormAction, FormSchema, Nullable, SimpleObjectFormProps } from './types';
 import { ElForm, ElRow } from 'element-plus';
 
 import type { FormProps as ElFormProps } from 'element-plus';

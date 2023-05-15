@@ -17,6 +17,7 @@ import type {
 import type { VNode } from 'vue';
 import type { ColEx } from './layout';
 import type { FormItemProps as __FormItemProps } from 'element-plus';
+import type { AnyObject, Arrayable, FormItemRule } from './global';
 
 interface _FormItemProps extends Omit<Partial<__FormItemProps>, 'label'> {
   // 标签上显示的自定义内容

@@ -1,7 +1,9 @@
 import type { FormActionButton } from './action';
+import type { AnyObject, Awaitable, FormRules, MaybeRef } from './global';
 import type { ColEx, RolEx } from './layout';
 import type { FormSchema } from './schema';
-import type { FormProps } from 'element-plus';
+import type { FormProps } from 'element-plus/es/components/form/src/form';
+// import type { FormProps } from 'element-plus';
 import type { UnwrapRef } from 'vue';
 
 type MaybeShallowRecordRef<T extends AnyObject> = {
@@ -39,22 +41,31 @@ export interface _FormProps extends _ElFormProps {
 //   schemas?: MaybeRef<FormSchema<UnwrapRef<T>>[]>;
 // };
 
-export type SimpleObjectFormProps<T extends AnyObject> = Partial<_FormProps> & {
+export interface SimpleObjectFormProps<T extends AnyObject = AnyObject> extends Partial<_FormProps> {
   // 表单数据对象
   model?: T;
   // 表单验证规则
   rules?: T;
   // 字段 schemas
   schemas?: T;
-};
+}
 
-export type BaseFormProps<T extends AnyObject=AnyObject> = Partial<_FormProps> & {
+export interface BaseFormProps<T extends AnyObject = AnyObject> extends Partial<_FormProps> {
   // 表单数据对象
   model?: T;
   // 表单验证规则
   rules?: FormRules<UnwrapRef<T>>;
   // 字段 schemas
   schemas?: FormSchema<UnwrapRef<T>>[];
-};
+}
 
-export type SchemaFormProps<T extends MaybeRef<AnyObject> = MaybeRef<AnyObject>> = Partial<MaybeShallowRecordRef<BaseFormProps<T>>>;
+// export type SchemaFormProps<T extends MaybeRef<AnyObject> = MaybeRef<AnyObject>> = Partial<MaybeShallowRecordRef<BaseFormProps<T>>>;
+
+export interface SchemaFormProps<T extends AnyObject = AnyObject> extends Partial<_FormProps> {
+  // 表单数据对象
+  model?: T;
+  // 表单验证规则
+  rules?: FormRules<UnwrapRef<T>>;
+  // 字段 schemas
+  schemas?: FormSchema<UnwrapRef<T>>[];
+}

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ElRadio, ElRadioButton, ElRadioGroup, useAttrs } from 'element-plus';
 import type { RadioComponentType, RadioGroupOption } from '../types/componentProps/components/radioGroup';
+import type { PropType } from 'vue';
 import { computed } from 'vue';
 
 const props = defineProps({

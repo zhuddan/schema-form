@@ -4,15 +4,11 @@ import dts from 'vite-plugin-dts';
 
 export const EXTERNAL = [
   'vue',
-  '@zdzz/shared',
-  '@zdzz/hooks',
-  /\.scss/,
   'element-plus',
+  /\.scss/,
 ];
 export const GLOBALS = {
   vue: 'Vue',
-  '@zdzz/shared': 'zd_shared',
-  '@zdzz/hooks': 'zd_hooks',
   'element-plus': 'ElementPlus',
 };
 
@@ -22,8 +18,11 @@ export default defineConfig(({ mode }) => {
     plugins: [
       vue(),
       dts({
-        include: ['./src/**/*.vue', './types/*.d.ts', './src/**/*.ts'],
+        include: ['./src/**/*.vue', './src/**/*.ts', './src/**/*.d.ts'],
         outputDir: ['dist', 'lib', 'es'],
+        // staticImport: true,
+        clearPureImport: false,
+        // skipDiagnostics: true,
         beforeWriteFile(filePath: string, content) {
           const filePathOut = filePath
             .replace(/dist\/src\//, 'dist/')
@@ -56,7 +55,25 @@ export default defineConfig(({ mode }) => {
             dir: 'dist',
             preserveModulesRoot: 'src',
             name: 'iife',
+            entryFileNames: 'index.js',
           },
+          {
+            globals: GLOBALS,
+            format: 'cjs',
+            dir: 'dist',
+            preserveModulesRoot: 'src',
+            name: 'cjs',
+            entryFileNames: 'index.cjs.js',
+          },
+          {
+            globals: GLOBALS,
+            format: 'es',
+            dir: 'dist',
+            preserveModulesRoot: 'src',
+            name: 'es',
+            entryFileNames: 'index.es.js',
+          },
+          //
           {
             globals: GLOBALS,
             format: 'es',

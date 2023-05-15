@@ -1,9 +1,7 @@
+import type { AnyObject, MaybeRecordRef, MaybeRef, Nullable } from 'src/types/global';
 import type { FormAction, SchemaFormProps } from '../types';
 import type { Ref, UnwrapRef } from 'vue';
 import { nextTick, onUnmounted, ref, toRaw, unref, watch } from 'vue';
-
-type UseFormReturn<T extends MaybeRef<AnyObject> = MaybeRef<AnyObject>> =
-[(instance: FormAction<UnwrapRef<T>>) => void, FormAction<T>];
 
 export function getRecordRefRawValue<T extends AnyObject>(maybeShallowRecordRef: MaybeRecordRef<T>): T {
   const res = {} as T;
@@ -14,10 +12,16 @@ export function getRecordRefRawValue<T extends AnyObject>(maybeShallowRecordRef:
   }
   return res;
 }
+// function useForm<T extends AnyObject>(option: FormProps<T>): FormProps<T>;
+// function useForm<T extends Ref<AnyObject>>(option: FormProps<T>): FormProps<Ref<UnwrapRef<T>>>;
+// function useForm<T extends MaybeRef<AnyObject>>(option: FormProps<T>): FormProps<T> {
+//   return option;
+// }
+type UseFormReturn<T extends AnyObject = AnyObject> = [(instance: FormAction<T>) => void, FormAction<T>];
 
-export default function useForm<T extends AnyObject>(props?: SchemaFormProps<T>): UseFormReturn<T> ;
-export default function useForm<T extends Ref<AnyObject>>(props?: SchemaFormProps<T>): UseFormReturn<Ref<UnwrapRef<T>>> ;
-export default function useForm<T extends MaybeRef<AnyObject>>(props?: SchemaFormProps<T>): UseFormReturn<T> {
+export function useForm<T extends AnyObject>(props?: SchemaFormProps<T>): UseFormReturn<T> ;
+export function useForm<T extends Ref<AnyObject>>(props?: SchemaFormProps<T>): UseFormReturn<T> ;
+export function useForm<T extends MaybeRef<AnyObject>>(props?: SchemaFormProps<T>): UseFormReturn<T> {
   const formAction = ref<Nullable<FormAction<T>>>(null);
   const loadedRef = ref<Nullable<boolean>>(false);
   const isProdMode = !_DEV_;

@@ -3,6 +3,7 @@ import type { ButtonEmits, ButtonProps } from 'element-plus';
 import type { CreateEmitType } from './util';
 import type { ColEx } from './layout';
 import type { UnwrapRef } from 'vue';
+import type { AnyObject } from './global';
 export interface FormAction<T extends AnyObject = AnyObject> {
   // 设置表单属性
   setProps: (props: Partial<SchemaFormProps<T>>) => void;

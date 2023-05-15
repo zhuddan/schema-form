@@ -1,7 +1,7 @@
 import { computed, ref } from 'vue';
 import type { CSSProperties, Ref, UnwrapRef } from 'vue';
 import type { InputEmits, InputProps, SwitchEmits, SwitchProps } from 'element-plus';
-
+import type { Fn } from '../../types';
 /************************************************************/
 type ComponentType = 'Input' | 'Switch';
 type RecordFn = Record<string, Fn>;
@@ -67,7 +67,7 @@ type MaybeRef<T> = Ref<UnwrapRef<T>> | T ;
 
 interface FormProps<T extends AnyObject> {
   model: T;
-  rules: MaybeRef<FormRules<UnwrapRef<T>>>;
+  rules?: MaybeRef<FormRules<UnwrapRef<T>>>;
   schema?: MaybeRef<FormSchema<UnwrapRef<T>>[]>;
 }
 
@@ -82,6 +82,19 @@ function useForm<T extends MaybeRef<AnyObject>>(option: FormProps<T>): FormProps
   return option;
 }
 
+const c = ref({
+  name: '123',
+});
+
+useForm({
+  model: c,
+  schema: [
+    {
+      component: 'Input',
+      field: 'divider',
+    },
+  ],
+});
 const user: User = {
   name: 'zd',
   age: 1,

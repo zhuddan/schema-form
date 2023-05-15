@@ -1,3 +1,4 @@
+import type { AnyObject } from 'src/types/global';
 import type { FormSchema, SchemaFormProps } from '../types';
 import type { ComputedRef, Ref } from 'vue';
 import { toRaw, unref } from 'vue';

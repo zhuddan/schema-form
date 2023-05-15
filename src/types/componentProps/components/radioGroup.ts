@@ -1,3 +1,4 @@
+import type { AnyObject } from 'src/types/global';
 import type { AssembleComponent, WithOption } from '../../util';
 import type { RadioEmits, RadioGroupProps, RadioProps } from 'element-plus';
 

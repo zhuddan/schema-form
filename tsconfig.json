@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "target": "es2015",
+    "rootDir": "./",
+    "outDir": "./dist",
+    "target": "esnext",
     "module": "esnext",
     "strict": true,
     "jsx": "preserve",
@@ -18,19 +20,16 @@
       "dom"
     ],
     "skipLibCheck": true,
-    "rootDir": "./",
-    "outDir": "./dist",
     "noEmit": false,
     "types": [
       "node",
       "vite/client"
-    ],
-    "typeRoots":[
-      "./types"
     ]
   },
   "include": [
-    "src/*",
-    "types/*"
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx", 
+    "src/**/*.vue"
   ]
 }
