@@ -1,6 +1,9 @@
 {
   "name": "@zdzz/schema-form",
   "version": "0.0.1",
+  "license": "ISC",
+  "private": false,
+  "author": "zhuddan",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -21,8 +24,6 @@
     "check:type": "vue-tsc --noEmit"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -71,5 +72,9 @@
   "dependencies": {
     "element-plus": "^2.3.4",
     "vue": "^3.2.20"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }
