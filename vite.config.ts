@@ -1,15 +1,16 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import dts from 'vite-plugin-dts';
+import libCss from 'vite-plugin-libcss';
 
 export const EXTERNAL = [
   'vue',
-  // 'element-plus',
+  'element-plus',
   /\.scss/,
 ];
 export const GLOBALS = {
   vue: 'Vue',
-  // 'element-plus': 'ElementPlus',
+  'element-plus': 'ElementPlus',
 };
 
 export default defineConfig(({ mode }) => {
@@ -20,9 +21,6 @@ export default defineConfig(({ mode }) => {
       dts({
         include: ['./src/**/*.vue', './src/**/*.ts', './src/**/*.d.ts'],
         outputDir: ['dist', 'lib', 'es'],
-        // staticImport: true,
-        clearPureImport: false,
-        // skipDiagnostics: true,
         beforeWriteFile(filePath: string, content) {
           const filePathOut = filePath
             .replace(/dist\/src\//, 'dist/')
@@ -34,6 +32,7 @@ export default defineConfig(({ mode }) => {
           };
         },
       }),
+      libCss(),
     ],
     define: {
       _DEV_: `${_DEV_}`,

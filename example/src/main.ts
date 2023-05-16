@@ -1,12 +1,17 @@
-import './style.css';
-import 'element-plus/dist/index.css';
+import '@/style/index.scss';
 
-import { createApp } from 'vue';
-import elementPlus from 'element-plus';
+import { setupRouter } from '@/router';
 import App from './App.vue';
+import { registerPlugins } from './plugins';
 
-const app = createApp(App);
+function __init__() {
+  const app = createApp(App);
+  // 注册路由
+  setupRouter(app);
+  // 插件
+  registerPlugins(app);
 
-app.use(elementPlus);
+  app.mount('#app');
+}
 
-app.mount('#app');
+__init__();
