@@ -2,7 +2,7 @@
 import type { FormRules } from '@zdzz/schema-form';
 import { ComponentType, SchemaForm, useForm } from '@zdzz/schema-form';
 import 'element-plus/dist/index.css';
-import { options } from './pages/d';
+import { options } from './d';
 const formModel = ref({
   name: 'name',
   sex: '0',

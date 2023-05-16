@@ -36,9 +36,9 @@ export interface SimpleObjectFormProps<T extends AnyObject = AnyObject> extends 
   // 表单数据对象
   model?: T;
   // 表单验证规则
-  rules?: T;
+  rules?: FormRules<T>;
   // 字段 schemas
-  schemas?: T;
+  schemas?: FormSchema<T>;
 }
 
 export interface BaseFormProps<T extends AnyObject = AnyObject> extends Partial<_FormProps> {
@@ -56,7 +56,7 @@ export interface SchemaFormProps<T extends AnyObject = AnyObject> extends Partia
   // 表单数据对象
   model?: T;
   // 表单验证规则
-  rules?: FormRules<UnwrapRef<T>>;
+  rules?: MaybeRef<FormRules<UnwrapRef<T>>>;
   // 字段 schemas
-  schemas?: FormSchema<UnwrapRef<T>>[];
+  schemas?: MaybeRef<FormSchema<UnwrapRef<T>>[]>;
 }
