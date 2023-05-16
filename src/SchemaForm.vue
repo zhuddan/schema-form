@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { CSSProperties, Ref } from 'vue';
-import type { AnyObject, EmitType, FormAction, FormSchema, Nullable, SimpleObjectFormProps } from './types';
+import type { CSSProperties, ComputedRef, Ref } from 'vue';
+import type { AnyObject, EmitType, FormAction, FormSchema, Nullable, SchemaFormProps, SimpleObjectFormProps } from './types';
 import { ElForm, ElRow } from 'element-plus';
 
 import type { FormProps as ElFormProps } from 'element-plus';
@@ -12,7 +12,7 @@ import { formProps } from './schemaFormProps';
 
 import SchemaFormActionButton from './components/SchemaFormActionButton.vue';
 import SchemaFormItem from './components/SchemaFormItem.vue';
-import type { FormProviderContextProps } from './hooks/useFormContent';
+import type { SchemaFormContent } from './hooks/useFormContent';
 import { createSchemaFormContext } from './hooks/useFormContent';
 import { computed, onMounted, reactive, ref, toRaw, unref, useAttrs, watch } from 'vue';
 
@@ -33,23 +33,23 @@ const elFormRef = ref<Nullable<FormAction>>();
 // 通过useForm 设置的Props
 const escapeProps = ref<Partial<SimpleObjectFormProps<any>>>({});
 // 包含了 组件的 attr props 和 useFormProps
-const bindValue = computed<SimpleObjectFormProps<any>>(() => ({
+const bindValue = computed(() => ({
   ...attrs,
   ...props,
   ...escapeProps.value,
-}));
+}) as SchemaFormProps<any>);
 
 const formAction = useFormEvents(
   emit as EmitType,
   elFormRef as Ref<FormAction>,
-  bindValue,
-  escapeProps,
+  bindValue as ComputedRef<SimpleObjectFormProps<any>>,
+  escapeProps as Ref<Partial<SimpleObjectFormProps<any>>>,
 );
 
 // 如果直接传递
 const getSchemas = computed(() => {
   const _schemas = unref(bindValue).schemas;
-  return _schemas as FormSchema<any>[];
+  return _schemas as unknown as FormSchema<any>[];
 });
 //
 
@@ -88,12 +88,12 @@ onMounted(() => {
   emit('register', formAction);
 });
 
-const formContext: FormProviderContextProps = computed(() => (
+const formContext = computed(() => (
   {
     ...bindValue.value,
     action: formAction,
   }
-));
+) as SchemaFormContent);
 
 watch(
   () => getSchemas.value,

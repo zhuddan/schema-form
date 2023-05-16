@@ -32,7 +32,7 @@ export function useContext<T>(key: InjectionKey<T> = Symbol(), defaultValue?: an
   return inject(key, defaultValue);
 }
 
-interface SchemaFormContent extends SchemaFormProps {
+export interface SchemaFormContent extends SchemaFormProps {
   action: FormAction;
 }
 

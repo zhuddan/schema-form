@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { SchemaFormProps } from './';
-import { SchemaForm, useForm } from './';
+import { AssembleComponent, CascaderProps, SchemaForm, useForm } from './';
 import { ref } from 'vue';
 // console.log(c);
 const c: SchemaFormProps = {
@@ -13,8 +13,11 @@ const [] = useForm({
   model: model.value,
   schemas: [
     {
-      component: 'Input',
+      component: 'Cascader',
       field: 'age',
+      componentProps: {
+        options: [],
+      },
     },
   ],
 });

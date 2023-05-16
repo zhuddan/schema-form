@@ -36,7 +36,7 @@ type BaseFormSchema <T = any> = {
   field: T extends AnyObject ? (keyof T | 'divider') : string ;
 } & _FormItemProps;
 
-type FormSchemaWithComponentProps<C, T extends AnyObject = AnyObject > = C & BaseFormSchema<T>;
+export type FormSchemaWithComponentProps<C, T extends AnyObject = AnyObject > = C & BaseFormSchema<T>;
 
 export type FormSchemaCascader<T extends AnyObject = AnyObject > = FormSchemaWithComponentProps<Cascader<T>, T>;
 export type FormSchemaCheckboxGroup<T extends AnyObject = AnyObject > = FormSchemaWithComponentProps<CheckboxGroup<T>, T>;
@@ -54,7 +54,7 @@ export type FormSchemaTimePicker<T extends AnyObject = AnyObject > = FormSchemaW
 export type FormSchemaTimeSelect<T extends AnyObject = AnyObject > = FormSchemaWithComponentProps<TimeSelect<T>, T>;
 export type FormSchemaUpload<T extends AnyObject = AnyObject > = FormSchemaWithComponentProps<Upload<T>, T>;
 
-export type FormSchema<T extends AnyObject = AnyObject > = FormSchemaCascader<T>
+export type ElFormSchema<T extends AnyObject = AnyObject > = FormSchemaCascader<T>
 | FormSchemaCheckboxGroup<T>
 | FormSchemaColorPicker<T>
 | FormSchemaDatePicker<T>
@@ -69,7 +69,6 @@ export type FormSchema<T extends AnyObject = AnyObject > = FormSchemaCascader<T>
 | FormSchemaTimePicker<T>
 | FormSchemaTimeSelect<T>
 | FormSchemaUpload<T>
-// 自定义
-// | FormSchemaStationSelector<T>
 ;
+export type FormSchema<T extends AnyObject = AnyObject > = ElFormSchema<T>;
 

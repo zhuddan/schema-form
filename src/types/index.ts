@@ -5,4 +5,5 @@ export * from './global';
 export * from './layout';
 export * from './props';
 export * from './schema';
+export * from './util';
 

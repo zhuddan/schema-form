@@ -7,7 +7,7 @@ export interface CommonOptions {
   disabled?: boolean;
 }
 
-export type ComponentType = 'Cascader'
+export type ElComponentType = 'Cascader'
 | 'CheckboxGroup'
 | 'ColorPicker'
 | 'DatePicker'
@@ -21,5 +21,6 @@ export type ComponentType = 'Cascader'
 | 'TimePicker'
 | 'TimeSelect'
 | 'Upload'
-| 'Rate'
-  ;
+| 'Rate';
+
+export type ComponentType = ElComponentType;

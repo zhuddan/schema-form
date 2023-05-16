@@ -2,7 +2,7 @@ import { merge } from 'lodash-es';
 import type { ComputedRef, Ref } from 'vue';
 import { nextTick, toRaw, unref } from 'vue';
 
-import type { FormAction, SchemaFormProps } from '../types';
+import type { FormAction, SchemaFormProps, SimpleObjectFormProps } from '../types';
 import type { AnyObject, EmitType, MaybeShallowRecordRef } from 'src/types/global';
 export function getRecordRefRawValue<T extends AnyObject>(maybeShallowRecordRef: MaybeShallowRecordRef<T>): T {
   const res = {} as T;
@@ -16,15 +16,15 @@ export function getRecordRefRawValue<T extends AnyObject>(maybeShallowRecordRef:
 export interface UseFormActionContext {
   emit: EmitType;
   elFormRef: Ref<FormAction>;
-  bindValue: ComputedRef<SchemaFormProps<any>>;
-  escapeProps: Ref<Partial<SchemaFormProps<any>>>;
+  bindValue: ComputedRef<SimpleObjectFormProps<any>>;
+  escapeProps: Ref<Partial<SimpleObjectFormProps<any>>>;
 }
 
 export function useFormEvents<T extends AnyObject>(
   emit: EmitType,
   elFormRef: Ref<FormAction>,
-  bindValue: ComputedRef<SchemaFormProps<any>>,
-  escapeProps: Ref<Partial<SchemaFormProps<any>>>,
+  bindValue: ComputedRef<SimpleObjectFormProps<any>>,
+  escapeProps: Ref<Partial<SimpleObjectFormProps<any>>>,
 ):
   FormAction<T> {
   async function clearValidate(name?: string | string[]) {
