@@ -1,6 +1,7 @@
 import type { FormAction } from './action';
-import type { CommonOptions, ComponentType, StyleType } from './common';
+import type { CommonOptions, StyleType } from './common';
 import type { AnyObject, Fn } from './global';
+import type { ComponentType } from '@zdzz/schema-form/components';
 
 export interface CommonProps {
   disabled: boolean;

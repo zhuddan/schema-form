@@ -31,6 +31,7 @@ defineOptions({
 .layout {
   height: 100vh;
   --header-height: 70px;
+  --main-height:calc(100vh - var(--header-height));
 
   header {
     height: var(--header-height);
@@ -48,13 +49,13 @@ defineOptions({
 
   section {
     display: flex;
-    height: calc(100vh - var(--header-height));
+    height: var(--main-height);
 
     aside {
       width: 200px;
       overflow-y: auto;
       border-right: 1px solid rgba(32, 33, 36, 0.28);
-
+      flex-shrink: 0;
       ul {
         list-style: none;
         padding: 0;
@@ -89,6 +90,11 @@ defineOptions({
 
     main {
       overflow-y: auto;
+      .page{
+        min-height: var(--main-height);
+        box-sizing: border-box;
+        padding: 20px;
+      }
     }
   }
 }

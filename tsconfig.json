@@ -26,7 +26,9 @@
       "vite/client"
     ],
     "paths": {
-      "element-plus":["node_modules/element-plus"]
+      "element-plus":["node_modules/element-plus"],
+      "components":["./components"],
+      "@zdzz/schema-form/components":["./components"]
     }
   },
   "include": [

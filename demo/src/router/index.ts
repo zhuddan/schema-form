@@ -16,7 +16,14 @@ export const formRoutes: RouteRecordRaw[] = [
     meta: {
       title: '使用formModel',
     },
-    component: () => import('@/views/form/base.vue'),
+    component: () => import('@/views/form/use-form-model.vue'),
+  },
+  {
+    path: '/form/ custom-components',
+    meta: {
+      title: '自定义组件',
+    },
+    component: () => import('@/views/form/custom-components.vue'),
   },
 ];
 

@@ -28,8 +28,7 @@
       "types"
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "~/*": ["./types/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": [
@@ -37,6 +36,7 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
+    "types/*.d.ts",
     "types/**/*.ts",
     "types/**/*.d.ts",
     "types/**/*.tsx",
